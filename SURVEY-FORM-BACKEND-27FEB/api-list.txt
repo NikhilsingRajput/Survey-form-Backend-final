@@ -1,0 +1,22 @@
+for registrer*************
+
+to create:- post- 'domain/'
+*****************************
+-----------------------------------------------------------------------------------
+for survey*******************
+to create:-  post- 'domain/survey/create'
+to read all:- get- 'domain/surveys'
+to search and read one with name param :- get 'domain/survey/surveys/:name'
+to update :- put- 'domain/survey/surveys/:name/update'
+to delete :- delete- 'domain/survey/surveys/:name/delete'
+
+**********************
+-----------------------------------------------------------------------------------
+
+for question************************
+
+to create:-  post- 'domain/survey/question/create'
+to read all:- get- 'domain/survey/question/questions'
+to search and read one with name param :- get 'domain/survey/question/:question'
+to update :- put- 'domain/survey/question/:question/update'
+to delete :- delete- 'domain/survey/question/:question/delete'
