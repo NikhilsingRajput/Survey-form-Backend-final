@@ -14,7 +14,7 @@ mongoose.set('strictQuery',false);
 mongoose
     .connect(uri, {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
+        useUnifiedTopology: true
     })
     .then(() => {
         console.log("CONNECTED TO DATABASE");
@@ -34,10 +34,3 @@ const port = 8000;
 app.listen(port, () => {
     console.log(`server is live on port ${port}`)
 });
-
-
-
-
-
-
-
