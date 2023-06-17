@@ -66,7 +66,8 @@ router.post('/signin', async (req, res) => {
                     res.cookie('jwtoken', token, {
                     // path: '/',
                     expires: new Date(Date.now() + 10000000), //10 min
-                    // httpOnly: true,
+                    httpOnly: true,
+                    domain: 'localhost:3000'
                     // sameSite: "lax"
                 })
                 return res.status(200).json({ message: "Sign in Success", user: userlogin, token })
