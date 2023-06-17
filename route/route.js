@@ -61,7 +61,7 @@ router.post('/signin', async (req, res) => {
                 //     expiresIn: "7d"
                 // })
                 const token = await userlogin.generateAuthToken(); // see user.js in model
-                // console.log(token)
+                console.log('my token id',token)
                 
                     res.cookie('jwtoken', token, {
                     // path: '/',
