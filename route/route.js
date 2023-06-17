@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 router.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body;
-         res.cookie('my_cookie', 'geeksforgeeks')
+        
         if (!email || !password) {
             return res.status(404).json({ error: "plz Filled th data " })
         }
@@ -63,13 +63,13 @@ router.post('/signin', async (req, res) => {
                 // })
                 const token = await userlogin.generateAuthToken(); // see user.js in model
                 console.log('my token id',token)
-                
-                    res.cookie('jwtoken', token, {
-                    path: '/',
-                    // expires: new Date(Date.now() + 10000000), //10 min
-                    httpOnly: true,
-                    sameSite: false
-                })
+                 res.cookie('jwtoken', token)
+                //     res.cookie('jwtoken', token, {
+                //     path: '/',
+                //     // expires: new Date(Date.now() + 10000000), //10 min
+                //     httpOnly: true,
+                //     sameSite: false
+                // })
                 return res.status(200).json({ message: "Sign in Success", user: userlogin, token })
             }
         }
