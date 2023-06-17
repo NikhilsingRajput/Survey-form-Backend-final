@@ -22,7 +22,7 @@ mongoose
     });
 
 app.use(cookieparser())
-app.use(cors());
+app.use(cors({credentials:true , origin:'http://localhost:3000'}));
 // app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
