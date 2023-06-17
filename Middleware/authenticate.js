@@ -4,8 +4,9 @@ const User = require('../model/user');
 const Authenticate = async(req , res , next)=>{
     console.log("Auth Check")
 try {
+     console.log("token",req.cookies,req.cookies.jwtoken)
     const token = req.cookies.jwtoken;
-    
+    console.log(token)
     const verifyToken = jwt.verify(token ,'DFLKVNDUFHBDFNMFDKJVHIURDVBNDFMBVFDBB');
     console.log("token",token,verifyToken)
     
