@@ -8,14 +8,19 @@ router.post('/create', async (req, res) => {
     const survey = new UserSurvey(req.body);
     // console.log(survey)
    await survey.save((err, success) => {
-        res.send({ success })
+        res.send({ success });
+        if(err){
+          console.log(err)
+        }
     })
 });
 
 
 //to read all surveys to render on login
-router.get('/surveys',  (req, res) => {
-    UserSurvey.find().sort("-createdAt")
+router.post('/surveys',  (req, res) => {
+  
+    // UserSurvey.find().sort("-createdAt")
+    UserSurvey.find({email : req.body.email})
     .exec((err, surveys) => {
       // error checking
       if (err || !surveys) {
@@ -26,10 +31,10 @@ router.get('/surveys',  (req, res) => {
       res.json(surveys);
     });
 });
-
+// 
 router.delete('/surveys/:name/delete',(req,res)=>{
   let id=req.body.id;
-  console.log("delete called");
+  console.log("delete called",req.body);
   res.status(200)
   UserSurvey.findByIdAndRemove({_id:id})
     .then(()=>{
@@ -47,10 +52,13 @@ router.patch('/surveys/:name/update',(req,res)=>{
   const newdata={
   name:req.body.name,
   description : req.body.description,
-  otherCriteria : req.body.otherCriteria
+  otherCriteria : req.body.otherCriteria,
+  startDate: req.body.startDate,
+  endDate: req.body.endDate
   }
   UserSurvey.findByIdAndUpdate(id , newdata)
   .then(()=>{
+    console.log("edited success",id)
     res.json({
       success : "survey details updated successfully"
     })

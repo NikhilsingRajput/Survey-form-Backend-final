@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const registrationRouter=require('./route/route');
 const surveyRouter=require("./route/surveyRoute");
 const questionRouter=require('./route/questionRoute');
-const User=require('./model/user')
+const cookieparser = require('cookie-parser');
+
 
 const app = express();
 const uri = "mongodb+srv://nikhilsingrajput2016:nikhil123@surveyforms.uwmob15.mongodb.net/?retryWrites=true&w=majority";
@@ -20,13 +21,15 @@ mongoose
         console.log("CONNECTED TO DATABASE");
     });
 
-
-app.use(cors());
+app.use(cookieparser())
+app.use(cors({credentials:true , origin:'https://survey-forms-project.onrender.com'}));
+// app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use('/',registrationRouter);
 app.use('/survey',surveyRouter);
-app.use('/survey/question',questionRouter)
+app.use('/survey/question',questionRouter);
+
 
 const port = 8000;
 
