@@ -46,6 +46,7 @@ router.post('/', async (req, res) => {
 router.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body;
+         res.cookie('my_cookie', 'geeksforgeeks')
         if (!email || !password) {
             return res.status(404).json({ error: "plz Filled th data " })
         }
