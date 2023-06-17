@@ -124,6 +124,12 @@ router.get('/logout',(req,res)=>{
     res.clearCookie('jwtoken',{path:'/'})
     res.status(200).send("logout success")
 })
-
+router.get('/setcookie', function (req, res) {
+ 
+    // Setting a cookie with key 'my_cookie'
+    // and value 'geeksforgeeks'
+    res.cookie('my_cookie', 'geeksforgeeks');
+    res.send('Cookies added');
+})
 module.exports = router;
 
