@@ -61,14 +61,13 @@ router.post('/signin', async (req, res) => {
                 //     expiresIn: "7d"
                 // })
                 const token = await userlogin.generateAuthToken(); // see user.js in model
-                console.log(token)
+                // console.log(token)
                 
                     res.cookie('jwtoken', token, {
                     // path: '/',
                     expires: new Date(Date.now() + 10000000), //10 min
-                    // httpOnly: true
-                    
-                    // sameSite: "lax"
+                    httpOnly: true,
+                    sameSite: "lax"
                 })
                 return res.status(200).json({ message: "Sign in Success", user: userlogin, token })
             }
