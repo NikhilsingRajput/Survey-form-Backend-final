@@ -2,11 +2,12 @@ const jwt = require("jsonwebtoken");
 const User = require('../model/user');
 
 const Authenticate = async(req , res , next)=>{
-    console.log("hhhh")
+    console.log("Auth Check")
 try {
     const token = req.cookies.jwtoken;
     
     const verifyToken = jwt.verify(token ,'DFLKVNDUFHBDFNMFDKJVHIURDVBNDFMBVFDBB');
+    console.log("token",token,verifyToken)
     
     const rootUser = await User.findOne({_id: verifyToken._id });
     console.log(rootUser)
