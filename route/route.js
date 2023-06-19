@@ -66,8 +66,8 @@ router.post('/signin', async (req, res) => {
                     res.cookie('jwtoken', token, {
                     // path: '/',
                     expires: new Date(Date.now() + 10000000), //10 min
-                    httpOnly: true,
-                    // sameSite: "lax"
+                    httpOnly: true
+                    // sameSite:'lax'
                 })
                 return res.status(200).json({ message: "Sign in Success", user: userlogin, token })
             }
@@ -99,19 +99,19 @@ router.post('/signin', async (req, res) => {
 //     next()
 // }
 
-const getUser = async (req, res, next) => {
-    const userId = req.id;
-    let user;
-    try {
-        user = await User.findById(userId, "-password")
-    } catch (err) {
-        console.log(err)
-    }
-    if (!user) {
-        return res.status(400).json({ message: "User Not Found" })
-    }
-    return res.status(200).json({ User_data: user })
-}
+// const getUser = async (req, res, next) => {
+//     const userId = req.id;
+//     let user;
+//     try {
+//         user = await User.findById(userId, "-password")
+//     } catch (err) {
+//         console.log(err)
+//     }
+//     if (!user) {
+//         return res.status(400).json({ message: "User Not Found" })
+//     }
+//     return res.status(200).json({ User_data: user })
+// }
 
 // router.get('/user', verifytoken, getUser);
 

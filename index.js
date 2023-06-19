@@ -1,28 +1,30 @@
 const express = require('express');
 const cors = require("cors");
+const dotenv = require('dotenv');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const registrationRouter=require('./route/route');
 const surveyRouter=require("./route/surveyRoute");
 const questionRouter=require('./route/questionRoute');
 const cookieparser = require('cookie-parser');
-
+dotenv.config({path:'./config.env'})
 
 const app = express();
-const uri = "mongodb+srv://nikhilsingrajput2016:nikhil123@surveyforms.uwmob15.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGOURL
 
 mongoose.set('strictQuery',false);
 mongoose
     .connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true
+       
     })
     .then(() => {
         console.log("CONNECTED TO DATABASE");
     });
 
 app.use(cookieparser())
-app.use(cors({credentials:true , origin:'https://survey-forms-project.onrender.com'}));
+app.use(cors({credentials:true , origin:'http://localhost:3000'}));
 // app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
