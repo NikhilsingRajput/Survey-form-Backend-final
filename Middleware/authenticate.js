@@ -5,7 +5,7 @@ const Authenticate = async(req , res , next)=>{
     console.log("Auth Check");
 try {
     const token = req.cookies.jwtoken;
-    
+    // console.log(token)
     const verifyToken = jwt.verify(token ,'DFLKVNDUFHBDFNMFDKJVHIURDVBNDFMBVFDBB');
     
     const rootUser = await User.findOne({_id: verifyToken._id });
