@@ -24,7 +24,7 @@ mongoose
     });
 
 app.use(cookieparser())
-app.use(cors({credentials:true , origin:'https://survey-forms-project.onrender.com'}));
+app.use(cors({credentials:true , origin:'*'}));
 // app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
